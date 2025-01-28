@@ -3,11 +3,13 @@
 import { signIn } from "@/auth";
 import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
+import config from "@/lib/config";
 import ratelimit from "@/lib/ratelimit";
 import { hash } from "bcryptjs";
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { workflowClient } from "../workflow";
 
 export const signInWithCredentials = async (
   params: Pick<AuthCredentials, "email" | "password">,
@@ -81,7 +83,15 @@ export const signUp = async (params: AuthCredentials) => {
       password: hashedPassword,
     });
 
-    // await signInWithCredentials({email, password})
+    await workflowClient.trigger({
+      url: `${config.env.prodApiEndpoint}/api/workflow/onboarding`,
+      body: {
+        email,
+        fullName,
+      },
+    });
+
+    await signInWithCredentials({ email, password });
     return { success: true };
   } catch (error) {
     console.error(error, "Sign up error");
