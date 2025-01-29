@@ -8,6 +8,20 @@
       "when": 1737528110777,
       "tag": "0000_dizzy_polaris",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1738129722454,
+      "tag": "0001_solid_blonde_phantom",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1738134137222,
+      "tag": "0002_rich_daimon_hellstrom",
+      "breakpoints": true
     }
   ]
 }

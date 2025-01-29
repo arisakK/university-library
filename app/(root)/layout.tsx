@@ -4,7 +4,7 @@ import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
-import { after } from "node:test";
+import { after } from "next/server";
 import { ReactNode } from "react";
 
 const layout = async ({ children }: { children: ReactNode }) => {
